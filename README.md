@@ -32,3 +32,7 @@ Example of loading it from e's `config.e`:
 ```
 
 Design notes: [`docs/design/`](docs/design/).
+
+Video of worksheet mode in action:
+
+https://youtu.be/PfXqDh_ueFw?si=OChwpkSzHks_NoYc
