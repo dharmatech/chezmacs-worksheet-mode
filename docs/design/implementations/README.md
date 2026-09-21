@@ -7,6 +7,6 @@ root (`lib/`, `tests/`, `examples/`).
 | Project | Path | Status |
 |---|---|---|
 | Worksheet | [`worksheet/`](worksheet/) | Implemented (chezmacs-mpl 000–001). Mode `"worksheet"`: a file's leading `(import …)` is its Chez top level. |
-| Insert result | — | Next. Not started. |
+| Insert result | [`insert-result/`](insert-result/) | Charter written. Spec not started. |
 
 Pipeline, trees, and non-goals: [`../../../README.md`](../../../README.md).

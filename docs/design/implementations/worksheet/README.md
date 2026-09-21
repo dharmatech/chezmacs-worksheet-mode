@@ -15,7 +15,8 @@ Code (journal root): `lib/worksheet-env.sls`, `lib/worksheet-mode.sls`,
 `tests/worksheet-env.ss`, `examples/mpl.ws`.
 
 **Status.** 000 and 001 implemented and reviewed. There is no 002
-in this project. Inserting `; =>` results under point is a later
-implementation folder, not a continuation of this series.
+in this project. Inserting `; =>` results under point is
+[`../insert-result/`](../insert-result/), not a continuation of
+this series.
 
 Journal map: [`../../../../README.md`](../../../../README.md).

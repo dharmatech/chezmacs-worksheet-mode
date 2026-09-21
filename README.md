@@ -61,7 +61,7 @@ assignment.
 | Project | Path | Status |
 |---|---|---|
 | Worksheet | [`docs/design/implementations/worksheet/`](docs/design/implementations/worksheet/) | Done (chezmacs-mpl 000–001). No 002 in that series. |
-| Insert result | — | Next. Separate charter. Not started. |
+| Insert result | [`docs/design/implementations/insert-result/`](docs/design/implementations/insert-result/) | Charter written. Spec not started. |
 
 Code: `lib/worksheet-env.sls`, `lib/worksheet-mode.sls`,
 `tests/worksheet-env.ss`, `examples/mpl.ws`.
