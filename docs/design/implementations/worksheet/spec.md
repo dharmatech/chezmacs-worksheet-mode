@@ -88,10 +88,12 @@ All new source lives under
 `/home/dharmatech/journal/2026-09-21-chezmacs-mpl/`:
 
 ```text
-charter.md                 already written
-spec.md                    this file
-checkpoints/               later, not this specification
-README.md                  map (not amended by this spec)
+docs/design/implementations/worksheet/
+  charter.md               already written
+  spec.md                  this file
+  checkpoints/             later, not this specification
+  README.md                this project's map
+README.md                  journal map (not amended by this spec)
 lib/worksheet-env.sls      layer 1: environment algebra
 lib/worksheet-mode.sls     layer 2: chezmacs module
 tests/worksheet-env.ss     Chez-script tests for layer 1

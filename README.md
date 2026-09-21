@@ -13,18 +13,20 @@ The editor's checkout and command are still `e`
 ([github.com/paveluv/e](https://github.com/paveluv/e),
 `/home/dharmatech/src/e`). This project calls the editor **chezmacs**.
 
-This directory is the project. Do not vendor MPL into chezmacs's
-`lib/` for this experiment. Do not treat this as chezmacs upstream
-work until a later review.
+This directory is the journal. Running extension code is at the root
+(`lib/`, `tests/`, `examples/`). Design documents live under
+[`docs/design/implementations/`](docs/design/implementations/). Do not
+vendor MPL into chezmacs's `lib/`. Do not treat this as chezmacs
+upstream work until a later review.
 
 ## Pipeline
 
 ```text
 this conversation (high-level discussion)
-        └─ charter.md
+        └─ docs/design/implementations/<project>/charter.md
                 │
                 ▼
-        designer conversation  →  spec.md  →  stop
+        designer conversation  →  spec.md in that folder  →  stop
                 │
                 ▼
         checkpoint-manager conversation  →  one checkpoint  →  stop
@@ -38,39 +40,33 @@ series in advance.
 
 | Role | Read first |
 |---|---|
-| Designer | [`charter.md`](charter.md) |
-| Checkpoint manager | [`spec.md`](spec.md) (once it matches this charter) |
+| Designer | that project's `charter.md` |
+| Checkpoint manager | that project's `spec.md` (once it matches its charter) |
 | Implementer | the one approved checkpoint file |
 
-If you have been told to read `charter.md`, that file is the whole
+If you have been told to read a `charter.md`, that file is the whole
 assignment.
 
 ## Trees
 
 | Tree | Path |
 |---|---|
-| This project | `/home/dharmatech/journal/2026-09-21-chezmacs-mpl` |
+| This journal | `/home/dharmatech/journal/2026-09-21-chezmacs-mpl` |
 | Editor (chezmacs) | `/home/dharmatech/src/e` |
 | MPL (sample library) | `/home/dharmatech/src/mpl` |
 | Other R6RS collections | `/home/dharmatech/src/surfage`, `/home/dharmatech/src/dharmalab`, and anything else under `/home/dharmatech/src` |
 
-## Status
+## Implementations
 
-- High-level discussion: done (Grok session; charter revised from
-  an MPL-only mode to a general worksheet)
-- `spec.md`: rewritten against the current charter (mode
-  `"worksheet"`, not MPL-only). Law for slices.
-- Checkpoints: **chezmacs-mpl 000** implemented and reviewed
-  ([`checkpoints/000-env-algebra.md`](checkpoints/000-env-algebra.md)).
-  **chezmacs-mpl 001** implemented and reviewed
-  ([`checkpoints/001-worksheet-mode.md`](checkpoints/001-worksheet-mode.md)).
-  There is no 002.
-- Implementation: 000 env algebra (`lib/worksheet-env.sls`,
-  `tests/worksheet-env.ss`); 001 chezmacs module
-  (`lib/worksheet-mode.sls`, `examples/mpl.ws`, installation
-  `config.e` snippet)
+| Project | Path | Status |
+|---|---|---|
+| Worksheet | [`docs/design/implementations/worksheet/`](docs/design/implementations/worksheet/) | Done (chezmacs-mpl 000–001). No 002 in that series. |
+| Insert result | — | Next. Separate charter. Not started. |
 
-## Not in this project
+Code: `lib/worksheet-env.sls`, `lib/worksheet-mode.sls`,
+`tests/worksheet-env.ss`, `examples/mpl.ws`.
+
+## Not in the worksheet project
 
 - Inserting evaluation results into the buffer (worksheet UI)
 - Importing libraries into chezmacs's global interaction environment

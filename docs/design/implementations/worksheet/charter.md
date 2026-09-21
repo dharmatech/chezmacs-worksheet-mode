@@ -4,7 +4,8 @@
 `2026-09-21-chezmacs-mpl`) into a **design conversation**. Not
 chezmacs upstream. Not a checkpoint. Not an implementer assignment.
 Specification will live beside this file as [`spec.md`](spec.md).
-Parent map: [`README.md`](README.md).
+Parent map: [`README.md`](README.md). Journal map:
+[`../../../../README.md`](../../../../README.md).
 
 The editor's checkout and command are still `e`
 (`/home/dharmatech/src/e`). This project calls the editor
@@ -339,11 +340,12 @@ Do **not** use `(mpl-env)`, `(mpl-mode)`, `(mpl env)`, or
 Suggested layout the spec may refine:
 
 ```text
-charter.md                 this file
-spec.md                    designer output (rewrite)
-checkpoints/               later
-README.md                  map
-lib/worksheet-env.sls
+docs/design/implementations/worksheet/
+  charter.md               this file
+  spec.md                  designer output (rewrite)
+  checkpoints/             later
+  README.md                this project's map
+lib/worksheet-env.sls      journal root (running extension)
 lib/worksheet-mode.sls
 tests/                     Chez-script tests
 examples/                  sample worksheet(s)
@@ -479,6 +481,7 @@ sample, MPL's API. This charter wins if they conflict with "make
 it feel more complete" or with the stale `spec.md`.
 
 - [`README.md`](README.md) — this project
+- [`../../../../README.md`](../../../../README.md) — journal map
 - `/home/dharmatech/src/e/README.md`
 - `/home/dharmatech/src/e/manual/EVAL.md` — `M-x`, `C-x C-e`,
   interaction environment
