@@ -4,8 +4,8 @@
 `2026-09-21-chezmacs-mpl`) into a **design conversation**. Not
 chezmacs upstream. Not a checkpoint. Not an implementer assignment.
 Specification will live beside this file as [`spec.md`](spec.md).
-Parent map: [`README.md`](README.md). Journal map:
-[`../../../../README.md`](../../../../README.md). Worksheet
+Parent map: [`README.md`](README.md). Design map:
+[`../../README.md`](../../README.md). Worksheet
 predecessor: [`../worksheet/`](../worksheet/).
 
 The editor's checkout and command are still `e`
@@ -253,7 +253,7 @@ unless 000 cannot include the chezmacs command.
 ## 5. Authority
 
 - [`README.md`](README.md) — this project
-- [`../../../../README.md`](../../../../README.md) — journal
+- [`../../README.md`](../../README.md) — design map
 - [`../worksheet/spec.md`](../worksheet/spec.md) — environment,
   `parse-worksheet`, `C-x C-e`; **not** a license to reopen it
 - `lib/worksheet-env.sls`, `lib/worksheet-mode.sls`

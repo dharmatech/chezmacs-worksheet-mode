@@ -1,77 +1,35 @@
-# chezmacs worksheet mode
+# Worksheet mode
 
-A chezmacs **worksheet** is a Scheme program with its own
-top level, taken from the file's leading `(import …)` forms.
-`C-x C-e` in that buffer uses that environment. `M-x` stays the
-editor, with Chez `+`.
+An extension for the [e](https://github.com/paveluv/e) text editor
+(sometimes called **chezmacs**).
+
+A **worksheet** is a Scheme program with its own top level, taken from
+the file's leading `(import …)` forms. `C-x C-e` in that buffer uses
+that environment. `M-x` stays the editor, with Chez `+`.
 
 [MPL](https://github.com/dharmatech/mpl) is the first customer, not
 the mode. An MPL worksheet imports MPL in the file, then writes
-idiomatic `(+ x x)` with no `mpl:` prefix.
+idiomatic `(+ x x)` with no `mpl:` prefix. A sample is
+[`examples/mpl.ws`](examples/mpl.ws).
 
-The editor's checkout and command are still `e`
-([github.com/paveluv/e](https://github.com/paveluv/e),
-`/home/dharmatech/src/e`). This project calls the editor **chezmacs**.
+Files ending in `.ws` or `.mpl` open in worksheet mode. `C-x C-e`
+evaluates the selected region, or the whole buffer if there is no
+region. `C-c C-c` evaluates the last complete form before point and
+inserts the value on the next line as a `; =>` comment.
 
-This directory is the project. Running extension code is at the root
-(`lib/`, `tests/`, `examples/`). Design documents live under
-[`docs/design/implementations/`](docs/design/implementations/). Do not
-vendor MPL into chezmacs's `lib/`. Do not treat this as chezmacs
-upstream work until a later review.
+Load it from e's `config.e`:
 
-## Pipeline
-
-```text
-this conversation (high-level discussion)
-        └─ docs/design/implementations/<project>/charter.md
-                │
-                ▼
-        designer conversation  →  spec.md in that folder  →  stop
-                │
-                ▼
-        checkpoint-manager conversation  →  one checkpoint  →  stop
-                │
-                ▼
-        implementer conversation  →  that checkpoint  →  stop
+```scheme
+(let ([src "/home/dharmatech/src"]
+      [lib "/home/dharmatech/src/chezmacs-worksheet-mode/lib"]
+      [eo  "/home/dharmatech/src/chezmacs-worksheet-mode/eo"])
+  (unless (file-directory? eo) (mkdir eo))
+  (compile-imported-libraries #t)
+  (unless (assoc src (library-directories))
+    (library-directories (cons (cons src eo) (library-directories))))
+  (unless (assoc lib (library-directories))
+    (library-directories (cons (cons lib eo) (library-directories))))
+  (kernel:load-module! "worksheet-mode"))
 ```
 
-Human review between stages. Do not write the rest of a checkpoint
-series in advance.
-
-| Role | Read first |
-|---|---|
-| Designer | that project's `charter.md` |
-| Checkpoint manager | that project's `spec.md` (once it matches its charter) |
-| Implementer | the one approved checkpoint file |
-
-If you have been told to read a `charter.md`, that file is the whole
-assignment.
-
-## Trees
-
-| Tree | Path |
-|---|---|
-| This project | `/home/dharmatech/src/chezmacs-worksheet-mode` |
-| Editor (chezmacs) | `/home/dharmatech/src/e` |
-| MPL (sample library) | `/home/dharmatech/src/mpl` |
-| Other R6RS collections | `/home/dharmatech/src/surfage`, `/home/dharmatech/src/dharmalab`, and anything else under `/home/dharmatech/src` |
-
-## Implementations
-
-| Project | Path | Status |
-|---|---|---|
-| Worksheet | [`docs/design/implementations/worksheet/`](docs/design/implementations/worksheet/) | Done (000–001). No 002 in that series. |
-| Insert result | [`docs/design/implementations/insert-result/`](docs/design/implementations/insert-result/) | Charter written. Spec not started. |
-
-Code: `lib/worksheet-env.sls`, `lib/worksheet-mode.sls`,
-`tests/worksheet-env.ss`, `examples/mpl.ws`.
-
-## Not in the worksheet project
-
-- Inserting evaluation results into the buffer (worksheet UI)
-- Importing libraries into chezmacs's global interaction environment
-- Prefixing library names at the worksheet (`mpl:+` and the like)
-- Loading `(mpl all)` with `kernel:load-module!`
-- An MPL-only mode, auto-`vars`, or MPL as the default import set
-- Patching chezmacs's kernel, fingerprint, or daemon
-- Vendoring MPL, Surfage, or Dharmalab into chezmacs's `lib/`
+Design notes: [`docs/design/`](docs/design/).

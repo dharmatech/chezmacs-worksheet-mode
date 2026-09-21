@@ -11,7 +11,7 @@ sample library, not the mode.
 | Spec | [`spec.md`](spec.md) |
 | Checkpoints | [`checkpoints/000-env-algebra.md`](checkpoints/000-env-algebra.md), [`checkpoints/001-worksheet-mode.md`](checkpoints/001-worksheet-mode.md) |
 
-Code (journal root): `lib/worksheet-env.sls`, `lib/worksheet-mode.sls`,
+Code (repository root): `lib/worksheet-env.sls`, `lib/worksheet-mode.sls`,
 `tests/worksheet-env.ss`, `examples/mpl.ws`.
 
 **Status.** 000 and 001 implemented and reviewed. There is no 002
@@ -19,4 +19,4 @@ in this project. Inserting `; =>` results under point is
 [`../insert-result/`](../insert-result/), not a continuation of
 this series.
 
-Journal map: [`../../../../README.md`](../../../../README.md).
+Design map: [`../../README.md`](../../README.md).

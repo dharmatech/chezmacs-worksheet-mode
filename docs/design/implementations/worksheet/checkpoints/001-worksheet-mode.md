@@ -101,7 +101,7 @@ environment is **not** this slice. Duplicate the small path here.
 **May update:**
 
 - [`README.md`](../README.md) status lines only (001 implemented or
-  not). Journal map: [`../../../../README.md`](../../../../README.md).
+  not). Design map: [`../../../README.md`](../../../README.md).
   Do not rewrite the pipeline, charter, or spec.
 - `/home/dharmatech/src/e/config.e` — the installation's gitignored
   config, next to the loader. Append the snippet in **config.e**.

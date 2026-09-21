@@ -93,7 +93,8 @@ docs/design/implementations/worksheet/
   spec.md                  this file
   checkpoints/             later, not this specification
   README.md                this project's map
-README.md                  journal map (not amended by this spec)
+docs/design/README.md      design map (not amended by this spec)
+README.md                  user-facing map
 lib/worksheet-env.sls      layer 1: environment algebra
 lib/worksheet-mode.sls     layer 2: chezmacs module
 tests/worksheet-env.ss     Chez-script tests for layer 1

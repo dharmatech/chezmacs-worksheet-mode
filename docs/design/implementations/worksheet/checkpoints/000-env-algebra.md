@@ -64,7 +64,7 @@ evaluating `import` there is wrong.
 **May update:**
 
 - [`README.md`](../README.md) status lines only (000 implemented or
-  not). Journal map: [`../../../../README.md`](../../../../README.md).
+  not). Design map: [`../../../README.md`](../../../README.md).
   Do not rewrite the pipeline, charter, or spec.
 
 **Do not edit:**

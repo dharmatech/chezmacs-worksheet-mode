@@ -11,6 +11,6 @@ whole-buffer.
 | Spec | [`spec.md`](spec.md) (designer writes) |
 | Checkpoints | [`checkpoints/`](checkpoints/) (later) |
 
-Predecessor: [`../worksheet/`](../worksheet/) (chezmacs-mpl 000–001).
+Predecessor: [`../worksheet/`](../worksheet/) (000–001).
 
-Journal map: [`../../../../README.md`](../../../../README.md).
+Design map: [`../../README.md`](../../README.md).
