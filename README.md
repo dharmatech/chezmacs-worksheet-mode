@@ -1,6 +1,6 @@
-# chezmacs worksheets (MPL as first customer)
+# chezmacs worksheet mode
 
-Experiment: a chezmacs **worksheet** is a Scheme program with its own
+A chezmacs **worksheet** is a Scheme program with its own
 top level, taken from the file's leading `(import …)` forms.
 `C-x C-e` in that buffer uses that environment. `M-x` stays the
 editor, with Chez `+`.
@@ -13,7 +13,7 @@ The editor's checkout and command are still `e`
 ([github.com/paveluv/e](https://github.com/paveluv/e),
 `/home/dharmatech/src/e`). This project calls the editor **chezmacs**.
 
-This directory is the journal. Running extension code is at the root
+This directory is the project. Running extension code is at the root
 (`lib/`, `tests/`, `examples/`). Design documents live under
 [`docs/design/implementations/`](docs/design/implementations/). Do not
 vendor MPL into chezmacs's `lib/`. Do not treat this as chezmacs
@@ -51,7 +51,7 @@ assignment.
 
 | Tree | Path |
 |---|---|
-| This journal | `/home/dharmatech/journal/2026-09-21-chezmacs-mpl` |
+| This project | `/home/dharmatech/src/chezmacs-worksheet-mode` |
 | Editor (chezmacs) | `/home/dharmatech/src/e` |
 | MPL (sample library) | `/home/dharmatech/src/mpl` |
 | Other R6RS collections | `/home/dharmatech/src/surfage`, `/home/dharmatech/src/dharmalab`, and anything else under `/home/dharmatech/src` |
@@ -60,7 +60,7 @@ assignment.
 
 | Project | Path | Status |
 |---|---|---|
-| Worksheet | [`docs/design/implementations/worksheet/`](docs/design/implementations/worksheet/) | Done (chezmacs-mpl 000–001). No 002 in that series. |
+| Worksheet | [`docs/design/implementations/worksheet/`](docs/design/implementations/worksheet/) | Done (000–001). No 002 in that series. |
 | Insert result | [`docs/design/implementations/insert-result/`](docs/design/implementations/insert-result/) | Charter written. Spec not started. |
 
 Code: `lib/worksheet-env.sls`, `lib/worksheet-mode.sls`,

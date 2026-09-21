@@ -2,9 +2,9 @@
 
 (define src-root "/home/dharmatech/src")
 (define lib-root
-  "/home/dharmatech/journal/2026-09-21-chezmacs-mpl/lib")
+  "/home/dharmatech/src/chezmacs-worksheet-mode/lib")
 (define object-directory
-  "/home/dharmatech/journal/2026-09-21-chezmacs-mpl/eo")
+  "/home/dharmatech/src/chezmacs-worksheet-mode/eo")
 
 (compile-imported-libraries #t)
 (unless (file-directory? object-directory)

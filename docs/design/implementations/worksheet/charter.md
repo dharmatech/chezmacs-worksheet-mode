@@ -325,7 +325,7 @@ datums) if useful; the live env is not a fact.
 
 All new code for this experiment lives under
 
-`/home/dharmatech/journal/2026-09-21-chezmacs-mpl/`
+`/home/dharmatech/src/chezmacs-worksheet-mode/`
 
 Locked library names (one-component, files under `lib/`):
 

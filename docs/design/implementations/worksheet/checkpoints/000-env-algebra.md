@@ -22,7 +22,7 @@ mutable top level from a list of import-specs, parses leading
 the remaining datums in that environment.
 
 Green when, from
-`/home/dharmatech/journal/2026-09-21-chezmacs-mpl`:
+`/home/dharmatech/src/chezmacs-worksheet-mode`:
 
 ```sh
 scheme --script tests/worksheet-env.ss
@@ -92,9 +92,9 @@ Hard-code these paths (personal experiment on this host):
 
 | Role | Path |
 |---|---|
-| Journal root | `/home/dharmatech/journal/2026-09-21-chezmacs-mpl` |
-| Extension library root | `/home/dharmatech/journal/2026-09-21-chezmacs-mpl/lib` |
-| Object cache | `/home/dharmatech/journal/2026-09-21-chezmacs-mpl/eo` |
+| Project root | `/home/dharmatech/src/chezmacs-worksheet-mode` |
+| Extension library root | `/home/dharmatech/src/chezmacs-worksheet-mode/lib` |
+| Object cache | `/home/dharmatech/src/chezmacs-worksheet-mode/eo` |
 | Third-party R6RS root | `/home/dharmatech/src` |
 
 `(library-directories)` must include `/home/dharmatech/src` so
@@ -147,7 +147,7 @@ Export **exactly**:
 | Export | Meaning |
 |---|---|
 | `src-root` | `"/home/dharmatech/src"` |
-| `object-directory` | `"/home/dharmatech/journal/2026-09-21-chezmacs-mpl/eo"` |
+| `object-directory` | `"/home/dharmatech/src/chezmacs-worksheet-mode/eo"` |
 | `prepare-library-directories!` | idempotent path setup above |
 | `default-import-specs` | `'((rnrs))` |
 | `read-forms` | `string → list` of datums |

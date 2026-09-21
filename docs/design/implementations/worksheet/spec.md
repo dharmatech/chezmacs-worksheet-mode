@@ -85,7 +85,7 @@ The implementation is wrong unless all of these are true:
 ## 3. Project boundary
 
 All new source lives under
-`/home/dharmatech/journal/2026-09-21-chezmacs-mpl/`:
+`/home/dharmatech/src/chezmacs-worksheet-mode/`:
 
 ```text
 docs/design/implementations/worksheet/
@@ -121,9 +121,9 @@ Hard-code these paths (this is a personal experiment on this host):
 
 | Role | Path |
 |---|---|
-| Journal root | `/home/dharmatech/journal/2026-09-21-chezmacs-mpl` |
-| Extension library root | `/home/dharmatech/journal/2026-09-21-chezmacs-mpl/lib` |
-| Object cache | `/home/dharmatech/journal/2026-09-21-chezmacs-mpl/eo` |
+| Project root | `/home/dharmatech/src/chezmacs-worksheet-mode` |
+| Extension library root | `/home/dharmatech/src/chezmacs-worksheet-mode/lib` |
+| Object cache | `/home/dharmatech/src/chezmacs-worksheet-mode/eo` |
 | Third-party R6RS root | `/home/dharmatech/src` |
 
 `(library-directories)` must include `/home/dharmatech/src` so
@@ -561,10 +561,10 @@ idempotent.
 Exact snippet (comments allowed around it):
 
 ```scheme
-;; worksheets — journal 2026-09-21-chezmacs-mpl
+;; worksheets — chezmacs-worksheet-mode
 (let ([src "/home/dharmatech/src"]
-      [lib "/home/dharmatech/journal/2026-09-21-chezmacs-mpl/lib"]
-      [eo  "/home/dharmatech/journal/2026-09-21-chezmacs-mpl/eo"])
+      [lib "/home/dharmatech/src/chezmacs-worksheet-mode/lib"]
+      [eo  "/home/dharmatech/src/chezmacs-worksheet-mode/eo"])
   (unless (file-directory? eo) (mkdir eo))
   (compile-imported-libraries #t)
   (unless (assoc src (library-directories))

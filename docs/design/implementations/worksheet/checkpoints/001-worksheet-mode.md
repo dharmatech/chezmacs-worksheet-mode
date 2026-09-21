@@ -387,10 +387,10 @@ times. `kernel:load-module!` is already idempotent.
 Exact snippet (comments allowed around it):
 
 ```scheme
-;; worksheets — journal 2026-09-21-chezmacs-mpl
+;; worksheets — chezmacs-worksheet-mode
 (let ([src "/home/dharmatech/src"]
-      [lib "/home/dharmatech/journal/2026-09-21-chezmacs-mpl/lib"]
-      [eo  "/home/dharmatech/journal/2026-09-21-chezmacs-mpl/eo"])
+      [lib "/home/dharmatech/src/chezmacs-worksheet-mode/lib"]
+      [eo  "/home/dharmatech/src/chezmacs-worksheet-mode/eo"])
   (unless (file-directory? eo) (mkdir eo))
   (compile-imported-libraries #t)
   (unless (assoc src (library-directories))
