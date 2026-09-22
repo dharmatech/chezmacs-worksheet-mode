@@ -4,14 +4,11 @@
           (worksheet-env)
           (prefix (core kernel) kernel:)
           (prefix (head edit) edit:)
-          (prefix (head echo) echo:)
           (prefix (head head) head:)
           (prefix (head keymap) keymap:)
           (prefix (head mode) mode:)
           (prefix (apps eval) eval:)
-          (prefix (service doc) doc:)
-          (prefix (service log) log:)
-          (prefix (sys sys) sys:))
+          (prefix (service doc) doc:))
 
   ;; Live environments cannot live in buffer facts: facts may be serialized.
   (define environments
@@ -26,30 +23,6 @@
             (hashtable-set! environments buffer (cons specs env))
             env))))
 
-  (define (join-printed vals)
-    (let loop ([vals vals] [out #f])
-      (cond
-        [(null? vals) (or out "")]
-        [(not out) (loop (cdr vals) (format "~s" (car vals)))]
-        [else (loop (cdr vals)
-                    (string-append out ", " (format "~s" (car vals))))])))
-
-  (define (void-result? outcome)
-    (or (null? outcome)
-        (and (null? (cdr outcome))
-             (eq? (car outcome) (void)))))
-
-  (define (report-outcome! outcome)
-    (let* ([failed? (string? outcome)]
-           [void? (and (not failed?) (void-result? outcome))]
-           [text (cond
-                   [failed? outcome]
-                   [void? (format "~s" (void))]
-                   [else (join-printed outcome)])]
-           [copied? (and (eval:copy-result) (not failed?) (not void?))])
-      (when copied? (edit:copy-to-kill-buffer! text))
-      (edit:set-message! text)))
-
   (define (evaluate-current)
     (let ([buffer (head:current-buffer)])
       (let ([text (edit:buffer-text buffer)]
@@ -61,33 +34,11 @@
                           (if region?
                               (eval-forms (read-forms span) env)
                               (eval-program text env))])
-              vals))))))
-
-  (define (capture-evaluation label thunk)
-    (define (evaluate)
-      (guard (ex [(head:interrupted? ex) "interrupted"]
-                 [else (format "error: ~a" (kernel:condition-text ex))])
-        (head:call-with-interrupt
-          (lambda ()
-            (edit:call-as-one-edit! label thunk)))))
-    (let ([lock (make-mutex)]
-          [terminal (sys:duplicate-standard-output-port)])
-      (define (record! component line)
-        (parameterize ([sys:terminal-output-port terminal])
-          (with-mutex lock (log:add! component line))))
-      (dynamic-wind
-        void
-        (lambda ()
-          (parameterize ([sys:terminal-output-port terminal])
-            (sys:call-with-streamed-output
-              (lambda (line) (record! 'stdout line))
-              (lambda (line) (record! 'stderr line))
-              evaluate)))
-        (lambda () (close-port terminal)))))
+              (apply values vals)))))))
 
   (define (run!)
-    (report-outcome!
-      (capture-evaluation "(worksheet-mode:run!)" evaluate-current))
+    (eval:report!
+      (eval:call-with-evaluation! "(worksheet-mode:run!)" evaluate-current))
     (void))
 
   (define (insert-last!)
@@ -104,7 +55,7 @@
           [else
            (let-values ([(specs _) (parse-worksheet text)])
              (let ([outcome
-                    (capture-evaluation
+                    (eval:call-with-evaluation!
                       "(worksheet-mode:insert-last!)"
                       (lambda ()
                         (let* ([env (environment-for buffer specs)]
@@ -124,21 +75,12 @@
                                   replacement)
                                 (edit:set-point-without-scroll!
                                   (index->position text datum-end)))))
-                          outcome)))])
-               (report-outcome! outcome)))])))
+                          (apply values outcome))))])
+               (eval:report! outcome)))])))
     (void))
 
   (define (init!)
-    (prepare-library-directories!)
-    (let ([scheme (mode:find "scheme")])
-      (mode:register! "worksheet" '(".ws" ".mpl") '()
-                      (and scheme (mode:styles scheme))
-                      (and scheme (mode:render scheme))
-                      (and scheme (mode:row-styles scheme)))
-      (let ([indent (mode:indenter "scheme")]
-            [format (mode:formatter "scheme")])
-        (when indent (mode:register-indenter! "worksheet" indent))
-        (when format (mode:register-formatter! "worksheet" format))))
+    (mode:derive! "worksheet" "scheme" '(".ws" ".mpl"))
     (keymap:bind-default! 'worksheet "C-x C-e" run!)
     (keymap:bind-default! 'worksheet "C-c C-c" insert-last!)
     (doc:register!
