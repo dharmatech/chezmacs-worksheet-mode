@@ -38,7 +38,8 @@
 
   (define (run!)
     (eval:report!
-      (eval:call-with-evaluation! "(worksheet-mode:run!)" evaluate-current))
+      (eval:call-with-evaluation! "(worksheet-mode:run!)" evaluate-current)
+      'worksheet)
     (void))
 
   (define (insert-last!)
@@ -76,7 +77,7 @@
                                 (edit:set-point-without-scroll!
                                   (index->position text datum-end)))))
                           (apply values outcome))))])
-               (eval:report! outcome)))])))
+               (eval:report! outcome 'worksheet)))])))
     (void))
 
   (define (init!)
