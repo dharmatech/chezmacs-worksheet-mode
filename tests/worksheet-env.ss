@@ -1,26 +1,6 @@
 (import (chezscheme))
 
-(define src-root "/home/dharmatech/src")
-(define lib-root
-  "/home/dharmatech/src/chezmacs-worksheet-mode/lib")
-(define object-directory
-  "/home/dharmatech/src/chezmacs-worksheet-mode/eo")
-
-(compile-imported-libraries #t)
-(unless (file-directory? object-directory)
-  (mkdir object-directory))
-
-(let ([dirs (library-directories)])
-  (unless (assoc src-root dirs)
-    (library-directories
-      (cons (cons src-root object-directory) dirs))))
-(let ([dirs (library-directories)])
-  (unless (assoc lib-root dirs)
-    (library-directories
-      (cons (cons lib-root object-directory) dirs))))
-
 (eval '(import (worksheet-env)) (interaction-environment))
-(prepare-library-directories!)
 
 (define fails 0)
 

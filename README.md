@@ -19,16 +19,7 @@ inserts the value on the next line as a `; =>` comment.
 Example of loading it from e's `config.e`:
 
 ```scheme
-(let ([src "/home/dharmatech/src"]
-      [lib "/home/dharmatech/src/chezmacs-worksheet-mode/lib"]
-      [eo  "/home/dharmatech/src/chezmacs-worksheet-mode/eo"])
-  (unless (file-directory? eo) (mkdir eo))
-  (compile-imported-libraries #t)
-  (unless (assoc src (library-directories))
-    (library-directories (cons (cons src eo) (library-directories))))
-  (unless (assoc lib (library-directories))
-    (library-directories (cons (cons lib eo) (library-directories))))
-  (kernel:load-module! "worksheet-mode"))
+(extension:load! "~/src/chezmacs-worksheet-mode" "worksheet-mode" '("~/src"))
 ```
 
 Design notes: [`docs/design/`](docs/design/).

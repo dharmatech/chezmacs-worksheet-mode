@@ -1,8 +1,5 @@
 (library (worksheet-env)
   (export
-    src-root
-    object-directory
-    prepare-library-directories!
     default-import-specs
     read-forms
     parse-worksheet
@@ -16,28 +13,7 @@
     eval-program)
   (import (chezscheme))
 
-  (define src-root "/home/dharmatech/src")
-
-  (define object-directory
-    "/home/dharmatech/src/chezmacs-worksheet-mode/eo")
-
-  (define lib-root
-    "/home/dharmatech/src/chezmacs-worksheet-mode/lib")
-
   (define default-import-specs '((rnrs)))
-
-  (define (prepare-library-directories!)
-    (compile-imported-libraries #t)
-    (unless (file-directory? object-directory)
-      (mkdir object-directory))
-    (unless (assoc src-root (library-directories))
-      (library-directories
-        (cons (cons src-root object-directory)
-              (library-directories))))
-    (unless (assoc lib-root (library-directories))
-      (library-directories
-        (cons (cons lib-root object-directory)
-              (library-directories)))))
 
   (define (read-forms str)
     (let ([in (open-input-string str)])
@@ -102,7 +78,6 @@
         names)))
 
   (define (make-worksheet-environment import-specs)
-    (prepare-library-directories!)
     (assert-no-variable-clashes! import-specs)
     (copy-environment (apply environment import-specs) #t))
 
